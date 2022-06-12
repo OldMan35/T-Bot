@@ -2,6 +2,7 @@ package ru.bot;
 
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -10,7 +11,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 public class Bot extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
-
+        // инициализация контекста
         ApiContextInitializer.init();
 
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
@@ -21,6 +22,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    //метод для обновления сообщения из чата
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
@@ -35,10 +37,18 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    //отправить ответ на сообщение
+    private void sendMessage(Message message, String massageText) {
+        SendMessage sendMessage = new SendMessage();
+
+    }
+
+    //получение имя бота
     public String getBotUsername() {
         return "PepparkakorBot";
     }
 
+    //получения токена
     public String getBotToken() {
         return "";
     }
